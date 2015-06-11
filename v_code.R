@@ -111,6 +111,20 @@ heatmap(fullrank2d[,rev(1:720)],Rowv=NA,Colv=NA,xlab="Rank2",ylab="Rank3",reorde
         labRow=NA, labCol=NA,col=c("black","white"),scale="none")
 
 sourceCpp("src/GenPath.cpp")
-GenPath(5,c(1:3))
+GenPath(5,c(1:10))
 
+GenPath(7,c(1:2,5))
+
+seq(1,720,length.out = 5)
+ref6 = GenPath(6,c(1,180,360,540))
+
+C_mat6 = EncodeV(ranking6,1:6)
+for (i in 2:nrow(ref6)){
+  C_mat_diff = EncodeV(ranking6,ref6[i,])
+  C_mat6 = cbind(C_mat6,C_mat_diff)
+}
+
+
+rankMatrix(C_mat6)
+ncol(C_mat6)
 
